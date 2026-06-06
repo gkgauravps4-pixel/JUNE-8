@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To My Best Friend ✨</title>
+    <style>
+        :root { --bg-color: #0f0f12; --card-bg: #1a1a24; --accent-color: #ff6584; --text-main: #ffffff; --text-muted: #a0a0b0; }
+        body { font-family: 'Segoe UI', Roboto, sans-serif; background-color: var(--bg-color); color: var(--text-main); margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        header { text-align: center; padding: 60px 20px 20px 20px; max-width: 800px; }
+        header h1 { font-size: 2.8rem; margin-bottom: 10px; background: linear-gradient(45deg, #ff6584, #ff8e53); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        header p { color: var(--text-muted); font-size: 1.2rem; }
+        .container { width: 90%; max-width: 800px; margin-bottom: 60px; }
+        .chat-card { background-color: var(--card-bg); border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); padding: 24px; margin-top: 30px; border: 1px solid rgba(255, 101, 132, 0.1); }
+        .chat-header { display: flex; align-items: center; gap: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 15px; margin-bottom: 20px; }
+        .status-dot { width: 10px; height: 10px; background-color: #00ff88; border-radius: 50%; box-shadow: 0 0 8px #00ff88; }
+        .chat-box { height: 300px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
+        .message { max-width: 75%; padding: 12px 16px; border-radius: 14px; font-size: 0.95rem; line-height: 1.5; }
+        .message.bot { background-color: rgba(255, 255, 255, 0.07); align-self: flex-start; border-top-left-radius: 2px; }
+        .message.user { background-color: var(--accent-color); color: white; align-self: flex-end; border-top-right-radius: 2px; }
+        .suggested-inputs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 20px; }
+        .prompt-btn { background-color: rgba(255, 101, 132, 0.1); color: var(--accent-color); border: 1px solid rgba(255, 101, 132, 0.3); padding: 10px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; transition: all 0.2s; }
+        .prompt-btn:hover { background-color: var(--accent-color); color: white; transform: translateY(-2px); }
+    </style>
+</head>
+<body>
+
+    <!-- GENTLE PIANO SONG -->
+    <audio id="bgMusic" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+
+    <header>
+        <h1>Thank You, Bestie ✨</h1>
+        <p>A small, coded space dedicated to a friend who makes everything a whole lot better.</p>
+    </header>
+
+    <div class="container">
+        <div class="chat-card">
+            <div class="chat-header">
+                <div class="status-dot"></div>
+                <h3>Best-Friend-AI v1.0</h3>
+            </div>
+            
+            <div class="chat-box" id="chatBox">
+                <div class="message bot">
+                    Hey! Welcome to this little corner of the internet. Ask me anything from the options below! ⬇️
+                </div>
+            </div>
+
+            <div class="suggested-inputs">
+                <button class="prompt-btn" onclick="sendResponse('why')">Why did you make this?</button>
+                <button class="prompt-btn" onclick="sendResponse('thanks')">What are you thankful for?</button>
+                <button class="prompt-btn" onclick="sendResponse('vibe')">Describe our friendship in 3 words.</button>
+                <button class="prompt-btn" onclick="sendResponse('message')">A final note for June 8th 📅</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const responses = {
+            why: "Honestly? Because standard thank-you texts are boring, and you deserve something unique. Plus, coding a whole page felt like the right way to show how much your presence matters! 🚀",
+            thanks: "For literally always being there. For the chaotic late-night conversations, the endless inside jokes, listening to me vent, and just being the most reliable person ever. You make life way easier, bro.",
+            vibe: "Chaotic. Unmatched. Elite. 💯 We basically share one brain cell at this point, and honestly, I wouldn't have it any other way.",
+            message: "Happy June 8th! Just wanted to take today to remind you that you are deeply appreciated. No matter how busy life gets or where things take us, you're stuck with me as your best friend. Thanks for being you! ✨🥊"
+        };
+
+        function sendResponse(key) {
+            const music = document.getElementById('bgMusic');
+            if (music) { music.volume = 0.3; music.play().catch(e => console.log("Music Playing")); }
+
+            const chatBox = document.getElementById('chatBox');
+            const buttons = document.querySelectorAll('.prompt-btn');
+            let userText = "";
+            for (let btn of buttons) {
+                if (btn.getAttribute('onclick').includes(key)) { userText = btn.innerText; break; }
+            }
+            const userDiv = document.createElement('div');
+            userDiv.className = 'message user';
+            userDiv.innerText = userText;
+            chatBox.appendChild(userDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            setTimeout(() => {
+                const botDiv = document.createElement('div');
+                botDiv.className = 'message bot';
+                botDiv.innerText = responses[key];
+                chatBox.appendChild(botDiv);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 600);
+        }
+    </script>
+</body>
+</html>
