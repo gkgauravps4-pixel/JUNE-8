@@ -5,27 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To My Best Friend ✨</title>
     <style>
-        :root { --bg-color: #0f0f12; --card-bg: #1a1a24; --accent-color: #ff6584; --text-main: #ffffff; --text-muted: #a0a0b0; }
-        body { font-family: 'Segoe UI', Roboto, sans-serif; background-color: var(--bg-color); color: var(--text-main); margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
-        header { text-align: center; padding: 60px 20px 20px 20px; max-width: 800px; }
+        :root { 
+            --bg-color: #0c0c0e; 
+            --card-bg: #161622; 
+            --accent-color: #ff6584; 
+            --text-main: #ffffff; 
+            --text-muted: #a0a0b0; 
+        }
+        body { 
+            font-family: 'Segoe UI', Roboto, sans-serif; 
+            background-color: var(--bg-color); 
+            color: var(--text-main); 
+            margin: 0; 
+            padding: 0; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            min-height: 100vh; 
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* FLOATING HEARTS STYLE */
+        .heart {
+            position: absolute;
+            color: rgba(255, 101, 132, 0.4);
+            font-size: 20px;
+            animation: float Up 6s linear infinite;
+            bottom: -20px;
+            z-index: 0;
+            user-select: none;
+            pointer-events: none;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-105vh) rotate(360deg); opacity: 0; }
+        }
+
+        header { text-align: center; padding: 60px 20px 20px 20px; max-width: 800px; z-index: 1; }
         header h1 { font-size: 2.8rem; margin-bottom: 10px; background: linear-gradient(45deg, #ff6584, #ff8e53); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         header p { color: var(--text-muted); font-size: 1.2rem; }
-        .container { width: 90%; max-width: 800px; margin-bottom: 60px; }
-        .chat-card { background-color: var(--card-bg); border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); padding: 24px; margin-top: 30px; border: 1px solid rgba(255, 101, 132, 0.1); }
+        
+        .container { width: 90%; max-width: 800px; margin-bottom: 60px; z-index: 1; }
+        .chat-card { background-color: var(--card-bg); border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); padding: 24px; margin-top: 30px; border: 1px solid rgba(255, 101, 132, 0.15); }
         .chat-header { display: flex; align-items: center; gap: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 15px; margin-bottom: 20px; }
         .status-dot { width: 10px; height: 10px; background-color: #00ff88; border-radius: 50%; box-shadow: 0 0 8px #00ff88; }
-        .chat-box { height: 300px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
-        .message { max-width: 75%; padding: 12px 16px; border-radius: 14px; font-size: 0.95rem; line-height: 1.5; }
+        
+        .chat-box { height: 320px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; padding-right: 5px; }
+        .message { max-width: 75%; padding: 12px 16px; border-radius: 14px; font-size: 0.95rem; line-height: 1.5; animation: popIn 0.3s ease forwards; }
         .message.bot { background-color: rgba(255, 255, 255, 0.07); align-self: flex-start; border-top-left-radius: 2px; }
         .message.user { background-color: var(--accent-color); color: white; align-self: flex-end; border-top-right-radius: 2px; }
+        
+        /* TYPING INDICATOR EFFECT */
+        .typing-dots { display: flex; gap: 4px; padding: 12px 16px; background-color: rgba(255, 255, 255, 0.07); align-self: flex-start; border-radius: 14px; border-top-left-radius: 2px; }
+        .dot { width: 8px; height: 8px; background: var(--text-muted); border-radius: 50%; animation: bounce 1.4s infinite ease-in-out both; }
+        .dot:nth-child(1) { animation-delay: -0.32s; }
+        .dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
+        @keyframes popIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
         .suggested-inputs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 20px; }
-        .prompt-btn { background-color: rgba(255, 101, 132, 0.1); color: var(--accent-color); border: 1px solid rgba(255, 101, 132, 0.3); padding: 10px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; transition: all 0.2s; }
-        .prompt-btn:hover { background-color: var(--accent-color); color: white; transform: translateY(-2px); }
+        .prompt-btn { background-color: rgba(255, 101, 132, 0.08); color: var(--accent-color); border: 1px solid rgba(255, 101, 132, 0.25); padding: 10px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; transition: all 0.2s; }
+        .prompt-btn:hover { background-color: var(--accent-color); color: white; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 101, 132, 0.3); }
+        
+        .footer-note { text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-top: 25px; font-style: italic; }
+        .chat-box::-webkit-scrollbar { width: 5px; }
+        .chat-box::-webkit-scrollbar-thumb { background-color: rgba(255, 255, 255, 0.15); border-radius: 10px; }
     </style>
 </head>
 <body>
 
-    <!-- GENTLE PIANO SONG -->
     <audio id="bgMusic" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
 
     <header>
@@ -37,7 +87,7 @@
         <div class="chat-card">
             <div class="chat-header">
                 <div class="status-dot"></div>
-                <h3>Best-Friend-AI v1.0</h3>
+                <h3>Best-Friend-AI v1.2 💕</h3>
             </div>
             
             <div class="chat-box" id="chatBox">
@@ -52,6 +102,7 @@
                 <button class="prompt-btn" onclick="sendResponse('vibe')">Describe our friendship in 3 words.</button>
                 <button class="prompt-btn" onclick="sendResponse('message')">A final note for June 8th 📅</button>
             </div>
+            <div class="footer-note">Made with ☕ and code for the absolute best.</div>
         </div>
     </div>
 
@@ -63,6 +114,19 @@
             message: "Happy June 8th! Just wanted to take today to remind you that you are deeply appreciated. No matter how busy life gets or where things take us, you're stuck with me as your best friend. Thanks for being you! ✨🥊"
         };
 
+        // HEARTS RAIN GENERATOR
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 4 + 's'; 
+            heart.style.fontSize = Math.random() * 15 + 15 + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 6000);
+        }
+        setInterval(createHeart, 400);
+
         function sendResponse(key) {
             const music = document.getElementById('bgMusic');
             if (music) { music.volume = 0.3; music.play().catch(e => console.log("Music Playing")); }
@@ -73,19 +137,30 @@
             for (let btn of buttons) {
                 if (btn.getAttribute('onclick').includes(key)) { userText = btn.innerText; break; }
             }
+            
+            // Add User Bubble
             const userDiv = document.createElement('div');
             userDiv.className = 'message user';
             userDiv.innerText = userText;
             chatBox.appendChild(userDiv);
             chatBox.scrollTop = chatBox.scrollHeight;
 
+            // Add Cute Typing Animation
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'typing-dots';
+            typingDiv.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+            chatBox.appendChild(typingDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // Remove dots and reply after 1 sec
             setTimeout(() => {
+                typingDiv.remove();
                 const botDiv = document.createElement('div');
                 botDiv.className = 'message bot';
                 botDiv.innerText = responses[key];
                 chatBox.appendChild(botDiv);
                 chatBox.scrollTop = chatBox.scrollHeight;
-            }, 600);
+            }, 1000);
         }
     </script>
 </body>
