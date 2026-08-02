@@ -110,14 +110,15 @@
     <div id="welcome-screen">
         <div class="welcome-card">
             <h1>Hey Anjali! ✨</h1>
-            <p>Happy Friendship Day! Click below to play your special song 🎧🎵</p>
-            <button class="btn-start" onclick="startSurprise()">Play Music 🎵</button>
+            <p>Happy Friendship Day! Click below to play your surprise 🎧🎵</p>
+            <button class="btn-start" onclick="startSurprise()">Play Surprise 🎵</button>
         </div>
     </div>
 
-    <!-- Direct Local Repo File -->
+    <!-- Direct CDN Track for Yaaron - KK -->
     <audio id="bg-music" loop preload="auto">
-        <source src="yaaron.mp3" type="audio/mpeg">
+        <source src="https://ia801503.us.archive.org/15/items/yaaron-dosti-badi-hi-haseen-hai/Yaaron%20Dosti%20Badi%20Hi%20Haseen%20Hai.mp3" type="audio/mpeg">
+        <source src="https://ia800302.us.archive.org/0/items/YaaronDostiKK/Yaaron%20Dosti%20-%20KK.mp3" type="audio/mpeg">
     </audio>
 
     <div class="container">
@@ -179,12 +180,13 @@
 
         function startSurprise() {
             document.getElementById('welcome-screen').classList.add('hidden');
-            isPlaying = true;
             
             audio.play().then(() => {
+                isPlaying = true;
                 statusText.innerText = "Playing for you...";
             }).catch(err => {
-                console.log("Audio play error:", err);
+                console.log("Audio Error: ", err);
+                statusText.innerText = "Click play to start song";
             });
 
             createFloatingEffects();
