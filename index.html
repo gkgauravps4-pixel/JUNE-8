@@ -21,14 +21,14 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: center;
             overflow-x: hidden;
             padding: 20px;
             color: #333;
             position: relative;
         }
 
-        /* Floating Animation Elements */
+        /* Floating Hearts Animation */
         .floating-element {
             position: fixed;
             pointer-events: none;
@@ -42,19 +42,15 @@
                 transform: translateY(100vh) rotate(0deg) scale(0.8);
                 opacity: 0;
             }
-            20% {
-                opacity: 0.9;
-            }
-            80% {
-                opacity: 0.9;
-            }
+            20% { opacity: 0.9; }
+            80% { opacity: 0.9; }
             100% {
                 transform: translateY(-15vh) rotate(360deg) scale(1.2);
                 opacity: 0;
             }
         }
 
-        /* Overlay Welcome Screen */
+        /* Welcome Overlay Screen */
         #welcome-screen {
             position: fixed;
             top: 0;
@@ -105,7 +101,7 @@
             background: linear-gradient(45deg, #ff4757, #ff6b81);
             color: white;
             border: none;
-            padding: 14px 32px;
+            padding: 16px 36px;
             font-size: 18px;
             font-weight: 600;
             border-radius: 50px;
@@ -119,62 +115,63 @@
             box-shadow: 0 12px 25px rgba(255, 71, 87, 0.5);
         }
 
-        /* Main Container */
+        /* Main App Container */
         .container {
-            max-width: 800px;
+            max-width: 650px;
             width: 100%;
-            margin-top: 20px;
             display: flex;
             flex-direction: column;
             gap: 25px;
             z-index: 2;
         }
 
-        /* Header Card */
-        .header-card {
-            background: rgba(255, 255, 255, 0.85);
+        /* Header & Music Player Card */
+        .player-card {
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(15px);
             padding: 35px 25px;
             border-radius: 25px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            border: 1px solid rgba(255,255,255,0.6);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            border: 1px solid rgba(255,255,255,0.7);
         }
 
-        .header-card h2 {
-            font-size: 16px;
+        .player-card h2 {
+            font-size: 15px;
             letter-spacing: 3px;
             text-transform: uppercase;
             color: #ff4757;
             margin-bottom: 5px;
         }
 
-        .header-card h1 {
+        .player-card h1 {
             font-family: 'Sacramento', cursive;
             font-size: 55px;
             color: #2f3542;
+            margin-bottom: 20px;
         }
 
-        /* Music Controls */
+        /* Dynamic Music Bar */
         .music-bar {
             background: #ffffff;
-            padding: 15px 25px;
+            padding: 20px 30px;
             border-radius: 50px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-            margin-top: 15px;
+            box-shadow: 0 10px 25px rgba(255, 71, 87, 0.15);
+            border: 1px solid #ffeaa7;
         }
 
         .song-info {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
+            text-align: left;
         }
 
         .song-info i {
-            font-size: 24px;
+            font-size: 30px;
             color: #ff4757;
             animation: pulse 1.5s infinite;
         }
@@ -189,58 +186,20 @@
             background: #ff4757;
             color: white;
             border: none;
-            width: 42px;
-            height: 42px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: 16px;
-            transition: 0.3s;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.3);
         }
 
-        /* Photo Gallery - Polaroid Style */
-        .photo-section {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            flex-wrap: wrap;
-            margin: 15px 0;
-        }
-
-        .polaroid {
-            background: white;
-            padding: 15px 15px 25px 15px;
-            border-radius: 12px;
-            box-shadow: 0 12px 25px rgba(0,0,0,0.12);
-            width: 280px;
-            transition: all 0.4s ease;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .polaroid:nth-child(1) { transform: rotate(-3deg); }
-        .polaroid:nth-child(2) { transform: rotate(3deg); }
-
-        .polaroid:hover {
-            transform: rotate(0deg) scale(1.05);
-            box-shadow: 0 18px 35px rgba(0,0,0,0.2);
-            z-index: 10;
-        }
-
-        .polaroid img {
-            width: 100%;
-            height: 350px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-
-        .polaroid-caption {
-            font-family: 'Sacramento', cursive;
-            font-size: 28px;
-            color: #2f3542;
-            margin-top: 12px;
+        .music-btn:hover {
+            transform: scale(1.1);
         }
 
         /* Lyrics Card */
@@ -251,25 +210,21 @@
             border-radius: 20px;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            position: relative;
-            overflow: hidden;
         }
 
         .lyrics-card h3 {
             color: #eccc68;
-            font-size: 20px;
-            margin-bottom: 15px;
+            font-size: 22px;
+            margin-bottom: 20px;
         }
 
         .lyric-line {
             font-size: 18px;
-            line-height: 1.8;
+            line-height: 1.9;
             font-style: italic;
-            opacity: 0.95;
             color: #f1f2f6;
         }
 
-        /* Interactive Chat/Message Section */
         .chat-section {
             background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
@@ -285,47 +240,10 @@
             font-size: 22px;
         }
 
-        .chat-bubbles {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .bubble {
-            max-width: 80%;
-            padding: 15px 20px;
-            border-radius: 20px;
-            font-size: 15px;
-            line-height: 1.5;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
-            animation: fadeIn 0.5s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .bubble.friend {
-            background: #ffffff;
-            color: #2f3542;
-            align-self: flex-start;
-            border-bottom-left-radius: 5px;
-            border: 1px solid #e1e8ef;
-        }
-
-        .bubble.me {
-            background: #ff4757;
-            color: white;
-            align-self: flex-end;
-            border-bottom-right-radius: 5px;
-        }
-
         .reasons-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 15px;
-            margin-top: 10px;
         }
 
         .reason-card {
@@ -334,84 +252,54 @@
             border-radius: 15px;
             text-align: center;
             border: 1px solid #ffeaa7;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: 0.3s;
-            cursor: pointer;
-        }
-
-        .reason-card:hover {
-            transform: translateY(-5px);
-            background: #fff8e7;
-            border-color: #fdcb6e;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.04);
         }
 
         .reason-card i {
-            font-size: 30px;
+            font-size: 28px;
             color: #ff7675;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
-        .reason-card h4 {
-            font-size: 16px;
-            color: #2f3542;
-            margin-bottom: 5px;
-        }
-
-        .reason-card p {
-            font-size: 13px;
-            color: #747d8c;
-        }
-
-        /* Footer */
         footer {
             text-align: center;
-            padding: 25px;
+            padding: 20px;
             color: #57606f;
             font-size: 14px;
-            margin-top: 20px;
         }
 
-        footer i {
-            color: #ff4757;
-        }
-
-        @media (max-width: 600px) {
-            .header-card h1 { font-size: 42px; }
-            .polaroid { width: 100%; max-width: 300px; }
-            .welcome-card h1 { font-size: 40px; }
-        }
+        footer i { color: #ff4757; }
     </style>
 </head>
 <body>
 
-    <!-- Welcome Popup to enable music autoplay -->
+    <!-- Start Overlay for audio unlock -->
     <div id="welcome-screen">
         <div class="welcome-card">
             <h1>Hey Anjali! ✨</h1>
-            <p>Happy Friendship Day! Here is a small digital surprise created specially for you to celebrate our bond. 💖</p>
-            <button class="btn-start" onclick="startSurprise()">Open Surprise 🎁</button>
+            <p>Happy Friendship Day! Click below to play your special song & surprise 🎵</p>
+            <button class="btn-start" onclick="startSurprise()">Play Music 🎧</button>
         </div>
     </div>
 
-    <!-- Audio Element: KK - Yaaron -->
+    <!-- Audio Element (Direct Sound Cloud Track) -->
     <audio id="bg-music" loop preload="auto">
-        <source src="https://ia801503.us.archive.org/15/items/YaaronDostiBadiHiHaseenHaiKK/Yaaron%20Dosti%20Badi%20Hi%20Haseen%20Hai%20-%20KK.mp3" type="audio/mp3">
-        Your browser does not support audio.
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=acoustic-guitars-ambient-112204.mp3" type="audio/mp3">
     </audio>
 
     <div class="container">
-
-        <!-- Header Card -->
-        <div class="header-card">
+        
+        <!-- Main Player -->
+        <div class="player-card">
             <h2>Happy Friendship Day</h2>
             <h1>Anjali</h1>
 
             <div class="music-bar">
                 <div class="song-info">
-                    <i class="fa-solid fa-music"></i>
+                    <i class="fa-solid fa-compact-disc fa-spin" id="disc-icon"></i>
                     <div>
-                        <strong style="font-size: 14px; display: block;">Yaaron - KK</strong>
-                        <span style="font-size: 12px; color: #747d8c;">Playing for you...</span>
+                        <strong style="font-size: 16px; color: #2f3542; display: block;">Yaaron - KK</strong>
+                        <span style="font-size: 13px; color: #747d8c;" id="music-status">Playing for you...</span>
                     </div>
                 </div>
                 <button class="music-btn" onclick="toggleMusic()" id="music-toggle-btn">
@@ -420,111 +308,81 @@
             </div>
         </div>
 
-        <!-- Photos Section -->
-        <div class="photo-section">
-            <div class="polaroid">
-                <img src="image_29cb7b.jpg" alt="Anjali">
-                <div class="polaroid-caption">Grace & Elegance ✨</div>
-            </div>
-            <div class="polaroid">
-                <img src="image_29cb60.jpg" alt="Anjali Photo 2">
-                <div class="polaroid-caption">Always Smiling 🌸</div>
-            </div>
-        </div>
-
-        <!-- Lyrics / Song Highlight -->
+        <!-- Lyrics Section -->
         <div class="lyrics-card">
-            <h3>🎵 Lines for Best Friend 🎵</h3>
+            <h3>🎵 Best Friendship Lines 🎵</h3>
             <p class="lyric-line">"Yaaron dosti badi hi haseen hai..."</p>
             <p class="lyric-line">"Yeh na ho toh bolo kya zindagi hai..."</p>
             <p class="lyric-line">"Koi toh ho jo baahon mein le le, koi toh ho jo sab kuch keh de..."</p>
             <p class="lyric-line" style="margin-top: 10px; color: #eccc68; font-weight: 600;">"Pyaar ke bina yeh koi kaise jee le..." 💛</p>
         </div>
 
-        <!-- Reasons Why Anjali is Best -->
+        <!-- Wholesome Cards -->
         <div class="chat-section">
-            <h3>Why Anjali is the Best Friend 🌟</h3>
+            <h3>Special Bestie Qualities 🌟</h3>
             <div class="reasons-grid">
                 <div class="reason-card">
-                    <i class="fa-solid fa-face-smile-beam"></i>
+                    <i class="fa-solid fa-heart"></i>
                     <h4>Super Supportive</h4>
-                    <p>Always there to listen and make everything better.</p>
+                    <p>Always there to make things better.</p>
                 </div>
                 <div class="reason-card">
                     <i class="fa-solid fa-gem"></i>
                     <h4>Pure Vibe</h4>
-                    <p>No drama, just pure wholesome friendship.</p>
+                    <p>No drama, just pure friendship.</p>
                 </div>
                 <div class="reason-card">
                     <i class="fa-solid fa-star"></i>
-                    <h4>Unfiltered Laughs</h4>
-                    <p>The best memories and random late night jokes.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Special Friendship Messages -->
-        <div class="chat-section">
-            <h3>Special Message 💌</h3>
-            <div class="chat-bubbles">
-                <div class="bubble friend">
-                    <strong>Anjali:</strong> Friendship Day par koi surprise nahi hai kya? 🤔
-                </div>
-                <div class="bubble me">
-                    <strong>Me:</strong> Waise toh roz hi friendship day hai tere sath, par yeh special web page bas tere liye banaya hai! 🎉
-                </div>
-                <div class="bubble friend">
-                    <strong>Anjali:</strong> Wow! This is so thoughtful! 🥹❤️
-                </div>
-                <div class="bubble me">
-                    <strong>Me:</strong> Thank you for being such an awesome friend. Happy Friendship Day Anjali! 🤝✨
+                    <h4>Best Memories</h4>
+                    <p>Unfiltered fun & constant support.</p>
                 </div>
             </div>
         </div>
 
     </div>
 
-    <footer>
-        Made with <i class="fa-solid fa-heart"></i> for Anjali | Happy Friendship Day 🎉
-    </footer>
+    <footer>Made with <i class="fa-solid fa-heart"></i> for Anjali | Happy Friendship Day</footer>
 
     <script>
         const audio = document.getElementById('bg-music');
         const musicBtn = document.getElementById('music-toggle-btn');
+        const statusText = document.getElementById('music-status');
+        const discIcon = document.getElementById('disc-icon');
         let isPlaying = false;
 
-        // Start Surprise Function
         function startSurprise() {
             document.getElementById('welcome-screen').classList.add('hidden');
             
-            // Play Audio
+            // Audio Play Trigger
             audio.play().then(() => {
                 isPlaying = true;
                 musicBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-            }).catch(error => {
-                console.log("Audio play blocked: " + error);
+                statusText.innerText = "Playing for you...";
+            }).catch(err => {
+                console.log("Audio play error: ", err);
             });
 
-            // Start Floating Elements
             createFloatingEffects();
         }
 
-        // Toggle Music Play/Pause
         function toggleMusic() {
             if (isPlaying) {
                 audio.pause();
                 musicBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+                statusText.innerText = "Paused";
+                discIcon.style.animationPlayState = 'paused';
                 isPlaying = false;
             } else {
                 audio.play();
                 musicBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                statusText.innerText = "Playing for you...";
+                discIcon.style.animationPlayState = 'running';
                 isPlaying = true;
             }
         }
 
-        // Floating Hearts & Stars Generator
         function createFloatingEffects() {
-            const icons = ['fa-heart', 'fa-star', 'fa-sparkles', 'fa-smile'];
+            const icons = ['fa-heart', 'fa-star', 'fa-music', 'fa-sparkles'];
             const colors = ['#ff4757', '#ffa502', '#2ed573', '#eccc68', '#ff6b81'];
 
             setInterval(() => {
@@ -539,11 +397,8 @@
                 element.style.animationDuration = (Math.random() * 3 + 4) + 's';
                 
                 document.body.appendChild(element);
-
-                setTimeout(() => {
-                    element.remove();
-                }, 7000);
-            }, 400);
+                setTimeout(() => { element.remove(); }, 7000);
+            }, 450);
         }
     </script>
 </body>
